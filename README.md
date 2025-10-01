@@ -37,11 +37,11 @@ cd ai-services && pip install -r requirements.txt && python app.py
 ```
 ## 🚀 Usage
 
-Open http://localhost:3000 for the frontend UI  
-Log in with your account  
-Raise a new ticket or track existing ones  
-Chat with the AI assistant for instant resolutions  
-Admin/support can view & manage tickets from the dashboard  
+- Open http://localhost:3000 for the frontend UI
+- Log in with your account
+- Raise a new ticket or track existing ones
+- Chat with the AI assistant for instant resolutions
+- Admin/support can view & manage tickets from the dashboard
 
 ## 👥 Contributors
 Team CodeAlliance
