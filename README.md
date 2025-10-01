@@ -44,4 +44,4 @@ Chat with the AI assistant for instant resolutions
 Admin/support can view & manage tickets from the dashboard
 
 ## 👥 Contributors
-Team Code Alliance
+Team CodeAlliance
