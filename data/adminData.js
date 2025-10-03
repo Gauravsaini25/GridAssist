@@ -5,6 +5,16 @@ export const tickets = [
   { id: 4, employee: "Diana", issue: "Software installation", status: "Open" },
   { id: 5, employee: "Eve", issue: "System crash", status: "Open" },
   { id: 6, employee: "Frank", issue: "Printer not responding", status: "Resolved" },
+  { id: 7, employee: "Grace", issue: "Monitor flickering", status: "Open" },
+  { id: 8, employee: "Henry", issue: "Network slow down", status: "In Progress" },
+  { id: 9, employee: "Ivy", issue: "New user setup", status: "Resolved" },
+  { id: 10, employee: "Jack", issue: "Laptop battery issue", status: "Open" },
+  { id: 11, employee: "Kelly", issue: "Database connection failure", status: "In Progress" },
+  { id: 12, employee: "Liam", issue: "Permission denied (file share)", status: "Resolved" },
+  { id: 13, employee: "Mia", issue: "Virtual machine access", status: "Open" },
+  { id: 14, employee: "Noah", issue: "Zoom not installing", status: "In Progress" },
+  { id: 15, employee: "Olivia", issue: "Mouse/keyboard unresponsive", status: "Resolved" },
+  { id: 16, employee: "Paul", issue: "Office 365 licensing issue", status: "Open" },
 ];
 
 export const employees = [
@@ -13,11 +23,30 @@ export const employees = [
   { name: "Charlie", tickets: 4 },
   { name: "Diana", tickets: 2 },
   { name: "Eve", tickets: 6 },
+  { name: "Frank", tickets: 7 },
+  { name: "Grace", tickets: 1 },
+  { name: "Henry", tickets: 9 },
+  { name: "Ivy", tickets: 5 },
+  { name: "Jack", tickets: 3 },
+  { name: "Kelly", tickets: 8 },
+  { name: "Liam", tickets: 4 },
+  { name: "Mia", tickets: 2 },
+  { name: "Noah", tickets: 6 },
+  { name: "Olivia", tickets: 10 },
 ];
-
 export const notes = [
   { title: "Weekly Report", content: "Check ticket trends before Friday." },
   { title: "Security", content: "Remind team to reset VPN certificates." },
   { title: "System Upgrade", content: "Schedule downtime for server upgrade." },
   { title: "Feedback", content: "Collect user feedback on new portal." },
+  { title: "Hardware Inventory", content: "Complete quarterly audit of all assigned devices." },
+  { title: "Training Session", content: "Prepare materials for 'Phishing Awareness' training next month." },
+  { title: "Vendor Meeting", content: "Follow up with networking vendor regarding router replacement quote." },
+  { title: "New Policy Draft", content: "Draft new policy on personal device usage (BYOD)." },
+  { title: "Clean Desk Policy", content: "Send out a reminder about the importance of securing workstations overnight." },
+  { title: "Knowledge Base Update", content: "Review and update the top 5 most-viewed articles in the KB." },
+  { title: "Budget Review", content: "Finalize IT budget projections for the next fiscal year." },
+  { title: "License Renewal", content: "Track expiry dates for all major software licenses." },
+  { title: "Backup Test", content: "Perform a successful recovery test from the last full backup." },
+  { title: "Remote Support", content: "Verify all remote support tools are functioning and updated." },
 ];

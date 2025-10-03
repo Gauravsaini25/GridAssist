@@ -1,8 +1,54 @@
 "use client";
-
+// 💡 FIX: Added explicit import for React to resolve "React is not defined" error
+import React from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { articles } from "@/mock/articles";
+import { ChevronLeft } from "lucide-react";
+// Safely import the parser library
+import parse from "html-react-parser";
+
+// 💡 Refactored HtmlContent to use the 'replace' option for safe styling
+const HtmlContent = ({ htmlString }) => {
+  const options = {
+    replace: (node) => {
+      if (node.type !== "tag") return;
+
+      // Apply styling based on tag type
+      switch (node.name) {
+        case "h2":
+          node.attribs.className =
+            "text-3xl font-bold mt-8 mb-4 border-b border-white/20 pb-2 text-[#C5DCFF]";
+          break;
+        case "h3":
+          node.attribs.className =
+            "text-xl font-semibold mt-6 mb-3 text-[#0E6DFD]";
+          break;
+        case "p":
+          node.attribs.className = "mb-5 leading-relaxed";
+          break;
+        case "ul":
+          node.attribs.className = "list-disc list-inside ml-4 mb-5 space-y-2";
+          break;
+        case "li":
+          node.attribs.className = "text-gray-300";
+          break;
+        case "blockquote":
+          node.attribs.className =
+            "border-l-4 border-[#0E6DFD] pl-4 py-2 my-6 bg-black/20 italic text-gray-300";
+          break;
+        case "strong":
+        case "b":
+          node.attribs.className = "font-extrabold text-white";
+          break;
+        default:
+          return; // Do nothing for other tags
+      }
+    },
+  };
+
+  return parse(htmlString, options);
+};
 
 export default function ArticlePage() {
   const { id } = useParams();
@@ -10,71 +56,63 @@ export default function ArticlePage() {
 
   if (!article) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-muted">Article not found...</p>
+      <div className="flex justify-center items-center min-h-screen bg-[#081C3A] text-gray-400">
+        <p className="text-xl">Article not found...</p>{" "}
       </div>
     );
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12">
+    <div className="max-w-5xl mx-auto text-white ">
       {/* Back Button */}
-      <div className="mb-6">
-        <Link href="/articles">
-          <button className="cursor-pointer px-4 py-2 rounded-lg bg-gray-700/30 hover:bg-gray-700/50 text-white font-medium transition-all duration-300">
-            ← Back to Articles
-          </button>
-        </Link>
-      </div>
-
-      {/* Article Card */}
-      <div className="bg-white/5 dark:bg-gray-900/50 backdrop-blur-xl rounded-3xl shadow-lg p-8 border border-gray-200/10">
-        
+      <Link href="/articles">
+        <button className="cursor-pointer gap-2 flex flex-row items-center bg-white/10 backdrop-blur-sm rounded-full p-3 border border-white/10 m-5 hover:bg-[#0E6DFD]/30">
+          <ChevronLeft className="w-5 h-5" /> Back to Articles
+        </button>
+      </Link>
+      {/* Article Card - Styled for dark theme */}{" "}
+      <div className="bg-[#093570] backdrop-blur-md rounded-3xl shadow-2xl p-8 lg:p-12 border border-white/10">
         {/* Title */}
-        <h1 className="text-5xl font-extrabold mb-6 bg-gradient-to-r from-indigo-500 via-blue-500 to-purple-500 bg-clip-text text-transparent tracking-tight">
-          {article.title}
-        </h1>
-
-        {/* Meta Info */}
-        <div className="flex items-center gap-3 text-sm text-gray-400 mb-8">
-          <span className="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full">IT Support</span>
-          <span>•</span>
-          <span>{new Date().toLocaleDateString()}</span>
+        <div className="mb-8 justify-between space-y-4">
+          <h1 className="text-5xl font-extrabold text-white drop-shadow-md tracking-tight justify-between">
+            {article.title}
+          </h1>
+          {/* Meta Info */}
+          <div className="gap-2 flex flex-row  text-sm text-[#C5DCFF] border-b border-white/10 pb-4 ">
+            <span className="px-3 py-1 bg-[#0E6DFD]/20 text-[#0E6DFD] font-semibold rounded-full text-xs uppercase tracking-wider">
+              IT Support
+            </span>
+            <span>Published: {new Date().toLocaleDateString()}</span>{" "}
+          </div>
+          {/* Featured Image */}
+          <div className="mb-10 overflow-hidden rounded-2xl shadow-xl">
+            <img
+              src={article.image}
+              alt={article.title}
+              className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
+            />
+          </div>
         </div>
-
-        {/* Featured Image */}
-        <div className="mb-10 overflow-hidden rounded-2xl shadow-lg">
-          <img
-            src={article.image}
-            alt={article.title}
-            className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
-          />
+        {/* SAFE Article Content Rendering */}
+        <div className="text-gray-200">
+          <HtmlContent htmlString={article.content} />
         </div>
-
-        {/* Article Content */}
-        <div
-          className="article-content"
-          dangerouslySetInnerHTML={{ __html: article.content }}
-        />
-
         {/* Divider */}
-        <div className="my-12 border-t border-gray-700/50"></div>
-
+        <div className="my-12 border-t border-white/10"></div>
         {/* Call to Action / Footer */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <p className="text-gray-400 text-lg">
+        <div className="flex flex-row items-center justify-between ">
+          <p className="text-[#C5DCFF] text-lg">
             🚀 Need more help? Reach out to our{" "}
-            <span className="text-indigo-400 font-semibold">IT Support Desk</span>.
+            <span className="text-[#0E6DFD] font-bold">IT Support Desk</span>.
           </p>
-
-          {/* Redirect button to home */}
+          {/* Redirect button to home - Styled with the blue gradient */}{" "}
           <Link href="/">
-            <button className="cursor-pointer px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">
-              Raise a Ticket
+            <button className="cursor-pointer gap-2 flex flex-row items-center bg-white/10 backdrop-blur-sm rounded-full p-3 border border-white/10 m-5 hover:bg-[#0E6DFD]/30">
+              Raise a New Ticket
             </button>
           </Link>
-        </div>
-      </div>
+        </div>{" "}
+      </div>{" "}
     </div>
   );
 }

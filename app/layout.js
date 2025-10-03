@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
           <TicketProvider>
             <ArticlesProvider>
               <Navbar />
-              <main className="p-4">{children}</main>
+              <main className="">{children}</main>
             </ArticlesProvider>
           </TicketProvider>
         </AuthProvider>
