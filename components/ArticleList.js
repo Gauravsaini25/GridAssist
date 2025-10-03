@@ -5,69 +5,85 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 
 export default function ArticleList() {
-  const [query, setQuery] = useState("");
-  const filtered = mockArticles.filter(
-    (a) =>
-      a.title.toLowerCase().includes(query.toLowerCase()) ||
-      a.content.toLowerCase().includes(query.toLowerCase())
-  );
+  const [query, setQuery] = useState("");
+  
+  // Assuming mockArticles is an array available via import
+  const articles = Array.isArray(mockArticles) ? mockArticles : [];
+  
+  const filtered = articles.filter(
+    (a) =>
+      a.title.toLowerCase().includes(query.toLowerCase()) ||
+      a.content.toLowerCase().includes(query.toLowerCase())
+  );
 
-  return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
-      {/* Search */}
-      <div className="relative mb-8">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted w-5 h-5" />
-        <input
-          type="text"
-          placeholder="Search articles..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="w-full pl-10 pr-3 py-3 rounded-lg border border-gray-300 dark:border-border bg-white dark:bg-slate-800 dark:text-foreground shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition"
-        />
-      </div>
+  return (
+    <div className="p-8 pt-0 max-w-7xl mx-auto">
+      {/* Search Input - Styled for the dark/translucent theme */}
+      <div className="relative mb-8 max-w-3xl mx-auto">
+        <input
+          type="text"
+          placeholder="Search knowledge base articles..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          // Dark, translucent style with blue focus ring
+          className="w-full pl-10 pr-3 py-3 rounded-full bg-black/50 backdrop-blur-sm text-white shadow-xl focus:outline-none focus:ring-2 focus:ring-[#0E6DFD] transition placeholder-gray-400"
+        />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+      </div>
 
-      {/* Articles Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Articles Grid */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {filtered.length > 0 ? (
           filtered.map((article) => (
             <Link
               key={article.id}
               href={`/articles/${article.id}`}
-              className="group"
+              className="group block"
             >
-              <div className="card overflow-hidden shadow hover:shadow-xl hover:-translate-y-1 transition transform cursor-pointer h-[380px] flex flex-col rounded-xl">
+              <div 
+                  className="bg-[#133b77] border border-white/10 overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-2xl h-full flex flex-col"
+              >
                 {/* Image */}
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full h-40 object-cover group-hover:scale-105 transition"
-                />
+                <div className="h-40 overflow-hidden">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x200/081C3A/C5DCFF?text=Article"; }}
+                    />
+                </div>
 
                 {/* Content */}
-                <div className="p-4 flex flex-col flex-1">
-                  <h2 className="text-lg font-bold mb-2 bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent line-clamp-2">
+                <div className="p-5 flex flex-col flex-1 text-white">
+                  <h2 
+                      className="text-xl font-bold mb-2 text-[#C5DCFF] line-clamp-2"
+                  >
                     {article.title}
                   </h2>
 
                   {/* Short preview */}
-                  <p className="text-muted text-sm line-clamp-4 flex-1">
+                  <p className="text-gray-300 text-sm line-clamp-4 flex-1">
                     {article.description}...
                   </p>
 
                   {/* Read More */}
-                  <span className="mt-3 text-sm font-medium text-primary group-hover:underline cursor-pointer">
-                    Read More →
-                  </span>
+                  <div className="mt-4 pt-3 border-t border-white/10">
+                        <span 
+                            className="text-sm font-medium text-[#0E6DFD] group-hover:underline transition cursor-pointer flex items-center gap-1"
+                        >
+                            Read Article →
+                        </span>
+                    </div>
                 </div>
               </div>
             </Link>
           ))
         ) : (
-          <p className="text-muted text-center col-span-full">
+          <p className="text-gray-400 text-center col-span-full py-10 italic">
             No articles found.
           </p>
         )}
       </div>
-    </div>
-  );
+    </div>
+  );
 }

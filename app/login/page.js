@@ -59,7 +59,7 @@ export default function LoginPage() {
             onClick={() => setRole(r)}
             className={` cursor-pointer flex-1 w-[50%] py-3 transition-colors duration-300 rounded-xl ${
               role === r
-                ? "bg-[#ffffff] text-[#0F61DC] font-bold"
+                ? "cursor-pointer items-center bg-white/20 backdrop-blur-sm p-3 border border-white/10  font-bold"
                 : "bg-gray-100 dark:bg-inherit text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#00000016]"
             }`}
           >
@@ -87,17 +87,17 @@ export default function LoginPage() {
                 ? "Admin Username / A100"
                 : "Employee ID (e.g., PG1001)"
             }
-            className="w-full p-3 rounded-lg focus:outline-none focus:ring-blue-500 dark:bg-[#ACC2E1] dark:text-[#EEF5FF]"
+            className="w-full p-3 rounded-lg focus:outline-none focus:ring-blue-500 dark:bg-[#ACC2E1] dark:text-[#000000]"
           />
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            className="w-full p-3 rounded-lg focus:outline-none focus:ring-blue-500 dark:bg-[#ACC2E1] dark:text-[#EEF5FF]"
+            className="w-full p-3 rounded-lg focus:outline-none focus:ring-blue-500 dark:bg-[#ACC2E1] dark:text-[#000000]"
           />
           <div className="flex justify-end mb-10">
-            <p className="text-sm text-gray-500 dark:text-[#545F6F] text-right">
+            <p className="text-sm text-gray-500 dark:text-[#0E6DFD] text-right underline">
               Forgot password?
             </p>
           </div>

@@ -10,6 +10,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   if (!state.user) return null;
+  if (state.user.role === "employee") return null;
 
   const isAdmin = state.user.role === "admin";
 
