@@ -5,10 +5,13 @@ import { useState } from "react";
 import { tickets as mockTickets } from "@/mock/tickets";
 import { Search, Menu, X, Home, ListTodo, Plus, Newspaper } from "lucide-react";
 import { Link } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function TicketsPage() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
+
+  const router = useRouter();
 
   const filteredTickets = mockTickets.filter(
     (ticket) =>
@@ -42,6 +45,14 @@ export default function TicketsPage() {
                 }}
               >
                 <Plus className="text-white w-5 h-5" /> Raise new Ticket
+              </button>
+              <button
+                onClick={() => {
+                  router.push("/login");
+                }}
+                className="cursor-pointer px-4 py-2 rounded-lg bg-red-500 hover:bg-red-600 text-white font-bold transition-all duration-300"
+              >
+                Logout
               </button>
             </div>
           </div>

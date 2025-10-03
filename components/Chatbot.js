@@ -4,9 +4,17 @@ import { useState } from "react";
 import { tickets } from "@/mock/tickets";
 import { articles } from "@/mock/articles";
 import { addChatbotTicket } from "@/mock/tickets";
-import { ArrowBigUp, ArrowUp, Menu, Newspaper, ListTodo, X } from "lucide-react"; // Added Menu, Home, ListTodo
+import {
+  ArrowBigUp,
+  ArrowUp,
+  Menu,
+  Newspaper,
+  ListTodo,
+  X,
+} from "lucide-react"; // Added Menu, Home, ListTodo
 import TypingBubble from "./TypingBubble";
 import Link from "next/link"; // Added Link for navigation
+import { useRouter } from "next/navigation";
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([
@@ -18,8 +26,9 @@ export default function Chatbot() {
   const [userMessage, setUserMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
 
+  const router = useRouter();
   // State for the new menu
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // NEW states for ticket creation (kept same)
   const [ticketStep, setTicketStep] = useState(null); // null | "subject" | "description"
@@ -74,8 +83,7 @@ export default function Chatbot() {
         setTicketStep(null);
         setPendingTicket({ subject: "", description: "" });
         response = `✅ Got it! Your issue has been logged.\n🆔 Ticket #${newTicket.id}\n📌 Subject: "${newTicket.subject}"`;
-      }
-      else if (
+      } else if (
         msg.includes("issue") ||
         msg.includes("problem") ||
         msg.includes("ticket")
@@ -132,11 +140,9 @@ export default function Chatbot() {
   return (
     <div className="w-full h-full flex justify-center items-start">
       <div className="w-full h-full flex flex-col overflow-hidden relative">
-        
         {/* Header with Hamburger Menu in Top Right */}
         <div className=" text-[#ffffff] p-4 text-4xl font-black relative ">
           GridAssist
-          
           {/* Hamburger Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -146,9 +152,12 @@ export default function Chatbot() {
                        hover:bg-white/20 transition duration-200 focus:outline-none z-20"
             aria-label="Toggle navigation menu"
           >
-            {isMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
+            {isMenuOpen ? (
+              <X className="w-5 h-5 text-white" />
+            ) : (
+              <Menu className="w-5 h-5 text-white" />
+            )}
           </button>
-
           {/* Dropdown Menu */}
           {isMenuOpen && (
             <div
@@ -173,9 +182,17 @@ export default function Chatbot() {
               >
                 <ListTodo className="w-4 h-4" /> View all Tickets
               </Link>
+              <button
+                onClick={() => {
+                  // dispatch({ type: "LOGOUT" });
+                  router.push("/login");
+                }}
+                className="cursor-pointer rounded-lg bg-red-500 hover:bg-red-600 text-white font-bold text-sm w-full p-2 shadow-md transition-all duration-300"
+              >
+                Logout
+              </button>
             </div>
           )}
-          
         </div>
 
         {/* Messages */}
@@ -198,9 +215,7 @@ export default function Chatbot() {
               </div>
             </div>
           ))}
-          {isTyping && (
-            <TypingBubble/>
-          )}
+          {isTyping && <TypingBubble />}
         </div>
 
         {/* Input */}
@@ -218,7 +233,7 @@ export default function Chatbot() {
               onClick={sendMessage}
               className="bg-[#0E6DFD] hover:bg-[#0e6efdaf] text-white p-2 rounded-full transition"
             >
-              <ArrowUp color="#ffffff"/>
+              <ArrowUp color="#ffffff" />
             </button>
           </div>
         </div>
