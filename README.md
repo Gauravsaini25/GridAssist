@@ -1,4 +1,4 @@
-# 🛠️ ZEN-HELP: AI-Driven Smart Ticketing Platform  
+# 🛠️ GridAssist: AI-Driven Smart Ticketing Platform  
 
 An **AI-powered ticketing solution** that centralizes IT support requests, auto-classifies issues, suggests intelligent resolutions, and streamlines workflows across multiple platforms like **GLPI, SolMan, and Email**.  
 
