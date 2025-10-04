@@ -2,7 +2,7 @@
 
 An **AI-powered ticketing solution** that centralizes IT support requests, auto-classifies issues, suggests intelligent resolutions, and streamlines workflows across multiple platforms like **GLPI, SolMan, and Email**.  
 
----
+
 
 ## 📌 Features  
 🔗 Unified Ticket Ingestion – Collects tickets from multiple platforms (GLPI, SolMan, Email)  
@@ -12,7 +12,7 @@ An **AI-powered ticketing solution** that centralizes IT support requests, auto-
 📊 Dashboard – Track, filter, and analyze tickets in real time  
 ⚡ Seamless Integration – Works with existing enterprise workflows  
 
----
+
 
 ## 🏗️ Tech Stack  
 Frontend: React.js / Next.js, Tailwind CSS  
@@ -20,7 +20,7 @@ Backend: Node.js / Express.js (for APIs & integration layer), Python (for AI/ML 
 AI/ML Models: NLP for classification & prioritization, Recommendation system, Chatbot  
 Database & Storage: MySQL / PostgreSQL, JSON/NoSQL for knowledge base  
 
----
+
 
 ## ⚙️ Installation  
 ```bash
@@ -34,7 +34,7 @@ cd frontend && npm install && npm start
 
 cd ai-services && pip install -r requirements.txt && python app.py
 
-```
+
 ## 🚀 Usage
 
 - Open http://localhost:3000 for the frontend UI
