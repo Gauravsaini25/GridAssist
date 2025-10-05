@@ -5,9 +5,9 @@ export default function TicketCard({ ticket }) {
   const [open, setOpen] = useState(false);
 
   const statusColor = {
-    unresolved: "bg-red-900/50 text-red-500",
-    acknowledged: "bg-yellow-900/50 text-yellow-500",
-    resolved: "bg-green-900/50 text-green-500 ",
+    Unresolved: "bg-red-900/50 text-red-500",
+    Acknowledged: "bg-yellow-900/50 text-yellow-500",
+    Resolved: "bg-green-900/50 text-green-500 ",
   };
 
   return (

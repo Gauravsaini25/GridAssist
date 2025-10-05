@@ -68,17 +68,17 @@ export default function TicketsPage() {
                   active: "bg-[#0E6DFD]/50 text-white backdrop-blur-sm",
                 },
                 {
-                  key: "unresolved",
+                  key: "Unresolved",
                   label: "Unresolved",
                   active: "bg-red-600/50 text-white backdrop-blur-sm",
                 },
                 {
-                  key: "acknowledged",
+                  key: "Acknowledged",
                   label: "Acknowledged",
                   active: "bg-yellow-500/50 text-white backdrop-blur-sm",
                 },
                 {
-                  key: "resolved",
+                  key: "Resolved",
                   label: "Resolved",
                   active: "bg-green-600/50 text-white backdrop-blur-sm",
                 },
