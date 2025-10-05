@@ -26,16 +26,16 @@ export default function HomePage() {
                 <div 
                   key={ticket.id} 
                   className={`rounded-lg tex-sm transition cursor-default flex flex-row justify-between items-center p-3 hover:bg-[#ffffff53]
-                              ${ticket.status === 'unresolved' ? 'bg-red-900/50' : 
-                                ticket.status === 'acknowledged' ? 'bg-yellow-900/50' : 
+                              ${ticket.status === 'Unresolved' ? 'bg-red-900/50' : 
+                                ticket.status === 'Acknowledged' ? 'bg-yellow-900/50' : 
                                 'bg-green-900/50'}`}
                 >
                   <p className="font-medium truncate text-[#ffffffdf]">{ticket.subject}</p>
                   <p className={`text-xs capitalize
                     ${
-                      ticket.status === "unresolved"
+                      ticket.status === "Unresolved"
                         ? "text-red-400/80"
-                        : ticket.status === "acknowledged"
+                        : ticket.status === "Acknowledged"
                         ? "text-yellow-400/80"
                         : "text-green-400/80"
                     }`}>
